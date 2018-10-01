@@ -33,10 +33,11 @@ sock, addr = lsock.accept()
 print("connection rec'd from", addr)
 
 
-from framedSock import framedSend, framedReceive
+from fileSock import framedSend, framedReceive
 
 while True:
     payload = framedReceive(sock, debug)
+    #print("payload:",payload)
     if debug: print("rec'd: ", payload)
     if not payload:
         break

@@ -13,6 +13,7 @@ rbuf = b""                      # static receive buffer
 
 def framedReceive(sock, debug=0):
     global rbuf
+    #rint("payload!!", sock.recv(100))
     state = "getLength"
     msgLength = -1
     while True:
@@ -27,12 +28,16 @@ def framedReceive(sock, debug=0):
                             print("badly formed message length:", lengthStr)
                             return None
                   state = "getPayload"
+
          if state == "getPayload":
              if len(rbuf) >= msgLength:
                  payload = rbuf[0:msgLength]
                  rbuf = rbuf[msgLength:]
                  return payload
-         r = sock.recv(100)
+         print("I GOT STOCK HERE")
+        #print("payload!!!!!!!!!!!!!!!!!!!!!!", sock.recv(1000))
+         r = sock.recv(1000)
+
          rbuf += r
          if len(r) == 0:
              if len(rbuf) != 0:

@@ -7,7 +7,7 @@ import socket, sys, re
 sys.path.append("../lib")       # for params
 import params
 
-from framedSock import framedSend, framedReceive
+from fileSock import framedSend, framedReceive
 
 
 switchesVarDefaults = (
@@ -57,12 +57,26 @@ if s is None:
     print('could not open socket')
     sys.exit(1)
 
+file = open('Text.txt','r')
+r = file.read().split('\n')
+#r = r.replace('\n', ' ')
+file.close()
 
-print("sending hello world")
-framedSend(s, b"hello world", debug)
+for i in r:
+    print('RHERE', i)
+    r = i.encode()
+
+
+print("sending",r)
+framedSend(s, r, debug)
+#r= file.read()
 print("received:", framedReceive(s, debug))
 
-print("sending hello world")
-framedSend(s, b"hello world", debug)
-print("received:", framedReceive(s, debug))
+
+
+
+
+#print("sending hello world")
+#framedSend(s, b"hello world", debug)
+#print("received:", framedReceive(s, debug))
 

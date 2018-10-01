@@ -1,0 +1,6 @@
+GATO gat
+perro
+elefante
+pato 
+perro
+jirafa
