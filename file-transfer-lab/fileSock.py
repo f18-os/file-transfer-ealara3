@@ -36,7 +36,7 @@ def framedReceive(sock, debug=0):
                  return payload
          print("I GOT STOCK HERE")
         #print("payload!!!!!!!!!!!!!!!!!!!!!!", sock.recv(1000))
-         r = sock.recv(1000)
+         r = sock.recv(100)
 
          rbuf += r
          if len(r) == 0:

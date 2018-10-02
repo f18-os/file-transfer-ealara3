@@ -22,6 +22,7 @@ debug, listenPort = paramMap['debug'], paramMap['listenPort']
 if paramMap['usage']:
     params.usage()
 
+
 lsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # listener socket
 bindAddr = ("127.0.0.1", listenPort)
 lsock.bind(bindAddr)

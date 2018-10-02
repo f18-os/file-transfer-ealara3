@@ -57,18 +57,23 @@ if s is None:
     print('could not open socket')
     sys.exit(1)
 
+
 file = open('Text.txt','r')
-r = file.read().split('\n')
-#r = r.replace('\n', ' ')
+#r = file.read().split('\n')
+r = file.read()
+r = r.replace('\n', '\0')
 file.close()
 
-for i in r:
-    print('RHERE', i)
-    r = i.encode()
+#ch = '\0'
 
 
-print("sending",r)
-framedSend(s, r, debug)
+#for i in r:
+#    print('RHERE', i)
+Newr = r.encode()
+
+
+print("sending",Newr)
+framedSend(s, Newr, debug)
 #r= file.read()
 print("received:", framedReceive(s, debug))
 
