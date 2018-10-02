@@ -58,7 +58,8 @@ if s is None:
     sys.exit(1)
 
 
-file = open('Text.txt','r')
+FileName = 'Text.txt'
+file = open(FileName,'r')
 #r = file.read().split('\n')
 r = file.read()
 r = r.replace('\n', '\0')
@@ -69,6 +70,7 @@ file.close()
 
 #for i in r:
 #    print('RHERE', i)
+r = FileName+'//NAME//'+r
 Newr = r.encode()
 
 
