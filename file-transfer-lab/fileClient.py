@@ -57,8 +57,8 @@ if s is None:
     print('could not open socket')
     sys.exit(1)
 
-
-FileName = 'Text.txt'
+FileName = input("Write file name:")
+#FileName = 'Text.txt'
 file = open(FileName,'r')
 #r = file.read().split('\n')
 r = file.read()
