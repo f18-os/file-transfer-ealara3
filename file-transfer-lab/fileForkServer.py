@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+import sys
 
 sys.path.append("../lib")       # for params
 
@@ -28,12 +29,19 @@ print("listening on:", bindAddr)
 while True:
     sock, addr = lsock.accept()
 
-    from framedSock import framedSend, framedReceive
+    from fileSock import framedSend, framedReceive
 
     if not os.fork():
         print("new child process handling connection from", addr)
         while True:
             payload = framedReceive(sock, debug)
+            if payload:
+                NewFile = payload.decode().replace("\x00", "\n")
+            else:
+                NameFile = NewFile.split("//NAME//")
+                file = open("NEW" + NameFile[0], 'w')
+                file.write(NameFile[1])
+                file.close()
             if debug: print("rec'd: ", payload)
             if not payload:
                 if debug: print("child exiting")
