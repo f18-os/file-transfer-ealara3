@@ -36,9 +36,9 @@ while True:
         while True:
             payload = framedReceive(sock, debug)
             if payload:
-                NewFile = payload.decode().replace("\x00", "\n")
+                NewFile = payload.decode().replace("\x00", "\n")    #switch the \0 that is encoded in hexadecimal in \x00 to enter
             else:
-                NameFile = NewFile.split("//NAME//")
+                NameFile = NewFile.split("//NAME//")                #separate the name from the file
                 file = open("NEW" + NameFile[0], 'w')
                 file.write(NameFile[1])
                 file.close()
