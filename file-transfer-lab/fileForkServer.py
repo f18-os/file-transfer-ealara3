@@ -39,9 +39,18 @@ while True:
                 NewFile = payload.decode().replace("\x00", "\n")    #switch the \0 that is encoded in hexadecimal in \x00 to enter
             else:
                 NameFile = NewFile.split("//NAME//")                #separate the name from the file
-                file = open("NEW" + NameFile[0], 'w')
-                file.write(NameFile[1])
-                file.close()
+                if len(NameFile) == 2:
+                    try:
+                        print("ARRIVED")
+                        l = open(NameFile[0],'r')
+                        l.close()
+                        file = open("(1)"+NameFile[0], 'w')       #The file is there so we change the name to the name of the text with one at the begining
+                        file.write(NameFile[1])
+                        file.close()
+                    except FileNotFoundError:
+                        file = open("NEW" + NameFile[0], 'w')
+                        file.write(NameFile[1])
+                        file.close()
             if debug: print("rec'd: ", payload)
             if not payload:
                 if debug: print("child exiting")

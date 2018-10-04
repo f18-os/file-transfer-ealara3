@@ -43,9 +43,10 @@ while True:
         NewFile = payload.decode().replace("\x00", "\n")
     else:
         NameFile = NewFile.split("//NAME//")
-        file = open("NEW"+NameFile[0], 'w')
-        file.write(NameFile[1])
-        file.close()
+        if len(NameFile) > 2:
+            file = open("NEW"+NameFile[0], 'w')
+            file.write(NameFile[1])
+            file.close()
     #print("payload:",payload)
     if debug: print("rec'd: ", payload)
     if not payload:

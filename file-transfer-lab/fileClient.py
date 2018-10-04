@@ -59,25 +59,29 @@ if s is None:
 
 FileName = input("Write file name:")
 #FileName = 'Text.txt'
-file = open(FileName,'r')
-#r = file.read().split('\n')
-r = file.read()
-r = r.replace('\n', '\0')           #It is not accepting the \n so I switch it to null which is \0 and still be aware of where is the next line
-file.close()
+try:
+    file = open(FileName,'r')
 
-#ch = '\0'
+    #r = file.read().split('\n')
+    r = file.read()
+    r = r.replace('\n', '\0')           #It is not accepting the \n so I switch it to null which is \0 and still be aware of where is the next line
+    file.close()
 
-
-#for i in r:
-#    print('RHERE', i)
-r = FileName+'//NAME//'+r           #I add this to send the name of the document attached to the file so we can put the same file name and I put this sign to show where I'll be separating this
-Newr = r.encode()                   #making the file in binary so I can send it
+    #ch = '\0'
 
 
-print("sending",Newr)
-framedSend(s, Newr, debug)
-#r= file.read()
-print("received:", framedReceive(s, debug))
+    #for i in r:
+    #    print('RHERE', i)
+    r = FileName+'//NAME//'+r           #I add this to send the name of the document attached to the file so we can put the same file name and I put this sign to show where I'll be separating this
+    Newr = r.encode()                   #making the file in binary so I can send it
+
+
+    print("sending",Newr)
+    framedSend(s, Newr, debug)
+    #r= file.read()
+    print("received:", framedReceive(s, debug))
+except FileNotFoundError:
+    print("File Does Not Exist")
 
 
 
